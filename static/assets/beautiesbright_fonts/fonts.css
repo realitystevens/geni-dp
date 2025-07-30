@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Beauties Bright Swashes';
+    src: url('BeautiesBrightSwash.eot');
+    src: local('Beauties Bright Swashes'), local('BeautiesBrightSwash'),
+        url('BeautiesBrightSwash.eot?#iefix') format('embedded-opentype'),
+        url('BeautiesBrightSwash.woff2') format('woff2'),
+        url('BeautiesBrightSwash.woff') format('woff'),
+        url('BeautiesBrightSwash.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Beauties Bright';
+    src: url('BeautiesBright.eot');
+    src: local('Beauties Bright'), local('BeautiesBright'),
+        url('BeautiesBright.eot?#iefix') format('embedded-opentype'),
+        url('BeautiesBright.woff2') format('woff2'),
+        url('BeautiesBright.woff') format('woff'),
+        url('BeautiesBright.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

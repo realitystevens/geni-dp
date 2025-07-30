@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Generate personalized DP with the Generation Intimacy design. #geni">
+    <meta property="og:description" content="Create your own personalized display picture using the Generation Intimacy design. Join the #geni movement!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://geni-dp.vercel.app/">
+    <meta property="og:image" content="{{ url_for('static', path='assets/og_image.png') }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Generate personalized DP with the Generation Intimacy design. #geni">
+    <meta name="twitter:description" content="Create your own personalized display picture using the Generation Intimacy design. Join the #geni movement!">
+    <meta name="twitter:image" content="{{ url_for('static', path='assets/og_image.png') }}">
+    <title>Generate personalized DP with the Generation Intimacy design. #geni</title>
+    <link rel="shortcut icon" href="{{ url_for('static', path='assets/favicon.jpeg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="__content">
+        <div class="__wrapper">
+            <h1>Generation Intimacy</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor asperiores nesciunt amet. #geni</p>
+            <div>
+                <button>Start here</button>
+                <button>Listen to Playlist</button>
+            </div>
+
+            <div>
+                <img src="{{ url_for('static', path='assets/generation_intimacy.png') }}" alt="Generation Intimacy Design" class="__design-image">
+
+                <form action="/generate" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="image/*">
+                    <button type="submit">></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
