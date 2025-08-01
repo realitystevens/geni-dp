@@ -3,41 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Generate personalized DP with the Generation Intimacy design. #geni">
-    <meta property="og:description" content="Create your own personalized display picture using the Generation Intimacy design. Join the #geni movement!">
+    <meta property="og:title" content="Create your personalized DP with the #geni design from @ninijibodu">
+    <meta property="og:description" content="Create your personalized DP with the #geni design from @ninijibodu. Join the #geni movement!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://geni-dp.vercel.app/">
+    <meta property="og:url" content="https://geni-dp.onrender.com/">
     <meta property="og:image" content="{{ url_for('static', path='assets/og_image.png') }}">
+    <meta property="og:author" content="@realitystevens">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Generate personalized DP with the Generation Intimacy design. #geni">
-    <meta name="twitter:description" content="Create your own personalized display picture using the Generation Intimacy design. Join the #geni movement!">
+    <meta name="twitter:title" content="Create your personalized DP with the #geni design from @ninijibodu">
+    <meta name="twitter:description" content="Create your personalized DP with the #geni design from @ninijibodu. Join the #geni movement!">
     <meta name="twitter:image" content="{{ url_for('static', path='assets/og_image.png') }}">
-    <title>Generate personalized DP with the Generation Intimacy design. #geni</title>
+    <meta name="twitter:creator" content="@realitystevens">
+    <title>Create your personalized DP with the #geni design from @ninijibodu on X</title>
     <link rel="shortcut icon" href="{{ url_for('static', path='assets/favicon.jpeg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <script async src="https://kit.fontawesome.com/01187779a7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="__content">
         <div class="__wrapper">
-            <h1>Generation Intimacy</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor asperiores nesciunt amet. #geni</p>
-            <div>
-                <button>Start here</button>
-                <button>Listen to Playlist</button>
-            </div>
+            <header class="__header">
+                <a href="https://open.spotify.com/album/3yS1fOC8YNbzfoB7WVSeOQ" target="_blank" rel="noopener noreferrer" class="btn playlist-btn"><i class="fa-brands fa-spotify"></i> Playlist</a>
+            </header>
+            <main class="main" id="main">
+                <h1 class="main__title">Generation Intimacy</h1>
+                <p class="main__desc">Create your personalized DP with the <span style="color: #1a1a1a;">#geni</span> design from <a href="https://x.com/ninijibodu">@ninijibodu</a></p>
 
-            <div>
-                <img src="{{ url_for('static', path='assets/generation_intimacy.png') }}" alt="Generation Intimacy Design" class="__design-image">
+                <div class="__dp-section">
+                    <img src="{{ url_for('static', path='assets/generation_intimacy.png') }}" alt="Generation Intimacy Design" class="__design-image" id="__design-image" />
+                    <p id="error-message" class="error-message"></p>
 
-                <form action="/generate" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file" accept="image/*">
-                    <button type="submit">></button>
-                </form>
-            </div>
+                    <div class="file-input-container">
+                        <input type="file" id="user-image" accept="image/*" class="input-file" />
+                        <div class="loading-spinner"></div>
+                    </div>
+
+                    <button id="download-btn" class="btn download-btn"><span class="material-symbols-outlined">auto_fix_high</span> Download DP</button>
+                </div>
+            </main>
+            <footer class="__footer">
+                <p>Built with the 💙 of Christ by <a href="https://x.com/realitystevens">@realitystevens</a>.</p>
+                <p><span style="color: #1a1a1a;">#geni</span> DP design by <a href="https://x.com/ninijibodu">@ninijibodu</a>.</p>
+                <p>Project built using FastAPI, a Python web framework.</p>
+                <p>View code on <a href="https://github.com/realitystevens/geni"><i class="fa-brands fa-github"></i>realitystevens/geni-dp</a>.</p>
+            </footer>
         </div>
     </div>
+
+    <script type="module" src="{{ url_for('static', path='generateDP.js') }}"></script>
+    <script type="module" src="{{ url_for('static', path='downloadImage.js') }}"></script>
 </body>
 </html>
