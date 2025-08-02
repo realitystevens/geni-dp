@@ -1,10 +1,12 @@
 import io
+import json
 import uvicorn
 from PIL import Image
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from utils import is_image_transparent, remove_background, crop_and_resize_with_outline
 
 
 app = FastAPI(
@@ -33,11 +35,24 @@ async def generate_image(websocket: WebSocket):
             background = Image.open("static/assets/generation_intimacy.png").convert("RGBA")
             user_image = Image.open(io.BytesIO(data)).convert("RGBA")
             
-            base_width = 800
-            w_percent = base_width / float(user_image.width)
-            new_height = int(float(user_image.height) * w_percent)
+            # Check if user_image is fully transparent
+            if not is_image_transparent(user_image):
+                try:
+                    result = remove_background(user_image)
+                except Exception as e:
+                    error_message = {"error": f"Background removal failed: {str(e)}"}
+                    print(error_message)
+                    await websocket.send_text(json.dumps(error_message))
+                    continue
+                user_image = result
 
-            user_image = user_image.resize((base_width, new_height), Image.LANCZOS)
+            # Crop, resize, and add outline
+            try:
+                user_image = crop_and_resize_with_outline(user_image, target_width=800)
+            except Exception as e:
+                error_message = {"error": f"Image processing failed: {str(e)}"}
+                await websocket.send_text(json.dumps(error_message))
+                continue
 
             # Calculate position to paste user image
             x = (background.width - user_image.width) // 2
