@@ -102,6 +102,11 @@ def crop_and_resize_with_outline(image: Image.Image, target_width: int = 800) ->
 
         image = image.resize((target_width, new_height), Image.LANCZOS)
 
+        # Resize image to target_width, and limit height to target_width (make it square if needed)
+        if image.height > target_width:
+            # Crop vertically to target_width height, starting from the top
+            image = image.crop((0, 0, target_width, target_width))
+
         # Add 1px white outline
         outline_img = Image.new("RGBA", (image.width + 2, image.height + 2), (0, 0, 0, 0))
         outline_img.paste(image, (1, 1), image)
