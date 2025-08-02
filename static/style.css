@@ -113,7 +113,7 @@ a:hover {
     border: 2px solid #e0e0e0;
     border-top: 2px solid var(--black);
     border-radius: 50%;
-    animation: spin 0.2s linear infinite;
+    animation: spin 0.5s linear infinite;
     margin: 0 auto;
 }
 
