@@ -13,7 +13,7 @@ downloadBtn.addEventListener('click', function(e) {
         link.click();
         document.body.removeChild(link);
     } else {
-        errorMessage.textContent = 'No DP available to download yet.';
+        errorMessage.textContent = 'No DP available to download yet. Upload an image first.';
         errorMessage.style.display = 'block';
     }
 });
