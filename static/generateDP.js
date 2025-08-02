@@ -10,16 +10,34 @@ function connectWebSocket() {
     ws = new WebSocket(wsUrl);
     ws.binaryType = 'arraybuffer';
     ws.onmessage = function(event) {
-        const arrayBuffer = event.data;
-        const blob = new Blob([arrayBuffer], { type: 'image/png' });
-        const url = URL.createObjectURL(blob);
-        
-        designImg.src = url;
-        loadingSpinner.style.display = 'none';
-        window.designImageEdited = true;
+        // Handle JSON error messages or binary image data
+        if (typeof event.data === 'string') {
+            // Try to parse as JSON (error message)
+            try {
+                const msg = JSON.parse(event.data);
+                if (msg.error) {
+                    errorMessage.textContent = msg.error;
+                    errorMessage.style.display = 'block';
+                    loadingSpinner.style.display = 'none';
+                    return;
+                }
+            } catch (e) {
+                // Not valid JSON, ignore or log
+                console.warn('Received non-JSON string:', event.data);
+            }
+        } else {
+            // Assume binary image data
+            const blob = new Blob([event.data], { type: 'image/png' });
+            const url = URL.createObjectURL(blob);
+            designImg.src = url;
+            loadingSpinner.style.display = 'none';
+            window.designImageEdited = true;
+        }
     };
     ws.onclose = function() {
         console.log('WebSocket connection closed. Reconnecting...');
+        errorMessage.textContent = 'WebSocket connection closed. Reconnecting...';
+        errorMessage.style.display = 'block';
 
         if (typeof wsReconnectAttempts === 'undefined') {
             window.wsReconnectAttempts = 1;
