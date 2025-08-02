@@ -1,5 +1,8 @@
 __pycache__/
 
 venv
+env
 
-test
+.env
+
+build_checks
